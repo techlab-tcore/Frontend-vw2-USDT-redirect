@@ -118,7 +118,7 @@ class User_control extends BaseController
         return redirect()->to(base_url());
     }
 
-    public function userRegistration()
+    public function userRegistration_test()
     {
         //if( session()->get('logged_in') ): return false; endif;
 
