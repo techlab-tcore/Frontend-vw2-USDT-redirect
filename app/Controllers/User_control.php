@@ -167,7 +167,7 @@ class User_control extends BaseController
                 $referrer = $_ENV['host'];
             endif;
 
-            //if( isset($_SESSION['taccode']) && $_SESSION['taccode']==$this->request->getpost('params')['veritac'] ):
+            if( isset($_SESSION['taccode']) && $_SESSION['taccode']==$this->request->getpost('params')['veritac'] ):
                 // Checking forbidden username - subaccount
                 $subStandard = 'SUB';
                 if( strpos($username, $subStandard)!== false ):
@@ -229,10 +229,10 @@ class User_control extends BaseController
                         endif;
                     endif;
                 endif;
-            //else:
+            else:
             //    unset($_SESSION['taccode']);
-            //    echo json_encode(['code'=>-1, 'message'=>lang('Validation.smstac')]);
-            //endif;
+               echo json_encode(['code'=>-1, 'message'=>lang('Validation.smstac')]);
+            endif;
         //endif;
         endif;
     }
