@@ -42,7 +42,7 @@ class User_control extends BaseController
             'contactno' => $mobile,
             'regioncode' => $regioncode,
             'role' => 4,
-            'onlyactive' => true,
+            'onlyactive' => false,
         ];
         $res = $this->user_model->selectUserWithoutLogin($payload);
         return $res;
@@ -179,6 +179,16 @@ class User_control extends BaseController
                         echo json_encode(['code'=>-1, 'message'=>lang('Validation.usernameforbidden')]);
                     else:
                         if( $this->validate($rules) ):
+                            $cNo = $this->request->getpost('params')['mobile'];
+                            $rCode = $this->request->getPost('params')['regionCode'];
+
+                            if($cNo != ""):
+                                $userBeforeLogin = $this->getUserBeforeLogin($cNo, $rCode);
+                                if($userBeforeLogin['code']==1 && $userBeforeLogin['data']!=[]):
+                                    echo json_encode(['code'=>-1, 'message'=>lang('Validation.contactExisted')]);
+                                    return;
+                                endif;
+                            endif;
                             $payload = [
                                 'agentid' => $referrer,
                                 'realname' => $this->request->getPost('params')['fname'],
@@ -192,33 +202,7 @@ class User_control extends BaseController
                                 'role'=> 4 // Member
                             ];
                             $res = $this->user_model->insertNewUser($payload);
-                            // Login
-                            /*if( $res['code']==1 ):
-                                $resLogin = $this->user_model->updateUserLogin([
-                                    'loginid' => strtolower($inputUsername),
-                                    'password' => $inputCPass,
-                                    'ip' => $_SESSION['ip'],
-                                    'role' => 4
-                                ]);
 
-                                if( $resLogin['code']==1 ):
-                                    $session = session();
-                                    $user_data = [
-                                        'logged_in' => TRUE,
-                                        'firstTimeLogin' => $resLogin['isFirstTimeLogin'],
-                                        'token' => $resLogin['userId'],
-                                        'session' => $resLogin['sessionId'],
-                                        'uplinerole' => $resLogin['uplineRole'],
-                                        'role' => $resLogin['role'],
-                                        'username' => strtolower($inputUsername)
-                                    ];
-                                    $session->set($user_data);
-                                endif;
-                                $result = array_merge($resLogin, ['contact'=>$baseContact, 'password'=>$basePassword, 'region'=>$region]);
-                                echo json_encode($result);
-                            else:
-                                echo json_encode($res);
-                            endif;*/
                             $result = array_merge($res, ['username'=>$loginusername, 'password'=>$basePassword]);
                             echo json_encode($result);
                         else:
@@ -226,7 +210,7 @@ class User_control extends BaseController
                                 'code' => -1,
                                 'message' => $this->validator->getError('params.password')
                             ]);
-                        endif;
+                        endif;                     
                     endif;
                 endif;
             else:
