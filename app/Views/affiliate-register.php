@@ -45,10 +45,75 @@
 <link rel="stylesheet" href="<?=base_url('assets/css/master.css?v='.rand());?>">
 <link rel="stylesheet" href="<?=base_url('assets/css/responsive.css?v='.rand());?>">
 <link rel="stylesheet" href="<?=base_url('assets/vendors/chatscreen/style.css?v='.rand());?>">
+<link rel="stylesheet" href="<?=base_url('assets/vendors/airdatepicker/css/datepicker.min.css');?>">
 </head>
 <body class="h-100" oncontextmenu="return false;">
 
 <section class="chatscreen" id="pMask" style="display: none;"></section>
+
+<?php if (isset($affiliate) && $affiliate === 'NjlkOWE3ZmZlNjY0NjRmNjRiN2U4MzAy'): ?>
+    <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '2268554037248776');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2268554037248776&ev=PageView&noscript=1"
+    /></noscript>
+<!-- End Meta Pixel Code -->
+<?php elseif (isset($affiliate) && $affiliate === 'NjlkOWE4ODJlNjY0NjRmNjRiN2U4MzA0'): ?>
+    <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1043003558234912');
+fbq('init', '827463280316966');
+fbq('init', '889189210353024');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1043003558234912&ev=PageView&noscript=1"
+/></noscript>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=827463280316966&ev=PageView&noscript=1"
+/></noscript>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=889189210353024&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+ <?php elseif (isset($affiliate) && $affiliate === 'NjlkOWE4MzllNjY0NjRmNjRiN2U4MzAz'): ?>
+    <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2633251917069578');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2633251917069578&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<?php endif; ?>
 
 <script>
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -145,7 +210,8 @@ document.onkeydown = function(e) {
 
                         <ul class="dropdown-menu TAC w-100">
                             <li><a class="dropdown-item otp-select" data-method="email">Email</a></li>
-                            <li><a class="dropdown-item otp-select" data-method="sms">SMS (Telco)</a></li>
+                            <li class="otp-sms-option"><a class="dropdown-item otp-select" data-method="sms">SMS Channel 1</a></li>
+                            <li class="otp-sms-option"><a class="dropdown-item otp-select" data-method="sms2">SMS Channel 2</a></li>
                             <li><a class="dropdown-item otp-select" data-method="whatsapp">WhatsApp</a></li>
                         </ul>
                     </div>
@@ -163,6 +229,7 @@ document.onkeydown = function(e) {
                         <select class="form-select regi-mobile-code" name="regionCode" required>
                             <option value="MYR" selected><?=lang('Label.malaysia');?></option>
                             <option value="SGD"><?=lang('Label.singapore');?></option>
+                            <option value="AUD" class="regi-code-aus" hidden><?=lang('Label.australia');?></option>
                         </select>
                         <!-- <a class="btn-lang dropdown-toggle regi-mobile-code" name="regionCode" id="dropdownMenuLang" data-bs-toggle="dropdown" aria-expanded="false">
                             <span id="selectedRegion">MYR</span>
@@ -195,6 +262,13 @@ document.onkeydown = function(e) {
                         <input type="text" pattern="^[a-zA-Z ]{3,}$" class="form-control rounded-end" id="floatingFname" name="fname" placeholder="<?=lang('Input.fullname');?>" required>
                         <small class="w-100 form-text"><?=lang('Validation.fullname');?></small>
                     </div>
+
+                    <label><?=lang('Input.dob');?></label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control bg-white" name="dob" value="<?=date('Y-m-d');?>" readonly>
+                        <small class="w-100 form-text"><?=lang('Validation.dob');?></small>
+                    </div>
+                                        
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary primary_bg primary_btn btn-lg"><?=lang('Nav.submit');?></button>
                         <a target="_blank" class="btn btn-secondary whatsapp" href=""><i class='bx bxl-whatsapp'></i>Whatsapp</a>
@@ -234,6 +308,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 $('.affRegisForm [type=submit]').prop('disabled', false);
                 const obj = JSON.parse(data);
                 if( obj.code==1 ) {
+                    <?php if (isset($affiliate) && in_array($affiliate, [
+                        'NjlkOWE3ZmZlNjY0NjRmNjRiN2U4MzAy',
+                        'NjlkOWE4ODJlNjY0NjRmNjRiN2U4MzA0',
+                        'NjlkOWE4MzllNjY0NjRmNjRiN2U4MzAz',
+                    ], true)): ?>
+                        if (typeof fbq === 'function') { fbq('track', 'CompleteRegistration'); }
+                    <?php endif; ?>
                     swal.fire("Success!", obj.message, "success").then(()=>{
                         window.location.replace("https://v2usdt.com/login/"+obj.username+"/"+obj.password);
                     });
@@ -262,6 +343,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 <script src="<?=base_url('assets/vendors/sweetalert2/sweetalert2.min.js');?>"></script>
 <script src="<?=base_url('assets/js/master.js?v='.rand());?>"></script>
 <script src="<?=base_url('assets/vendors/chatscreen/chatscreen.js?v='.rand());?>"></script>
+<script src="<?=base_url('assets/vendors/airdatepicker/js/datepicker.min.js');?>"></script>
+<script src="<?=base_url('assets/vendors/airdatepicker/js/i18n/datepicker.en.js');?>"></script>
+<script src="<?=base_url('assets/vendors/airdatepicker/js/i18n/datepicker.zh.js');?>"></script>
 
 </body>
 </html>
@@ -272,6 +356,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const obj = JSON.parse(data);
     });
 
+    airdatepicker();
     getLiveChat();
 
     document.querySelectorAll(".otp-select").forEach(item => {
@@ -282,7 +367,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             document.getElementById("otpMethodBtn").innerHTML =
                 `${this.innerText}`;
         
-            if (method === 'sms' || method === 'whatsapp') {
+            if (method === 'sms' || method === 'sms2' || method === 'whatsapp') {
                 //show mobile
                 $('#mobileLabel').removeClass('d-none');
                 $('.regi-mobile-code').parent().removeClass('d-none');
@@ -298,6 +383,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 //remove attr required from email, add to mobile
                 $('.affRegisForm [name=mobile]').attr('required', true);
                 $('.affRegisForm [name=email]').removeAttr('required');
+
+                //toggle AUS region option (WhatsApp only)
+                if (method === 'sms2') {
+                    $('.regi-mobile-code .regi-code-aus').prop('hidden', false);
+                } else {
+                    if ($('.regi-mobile-code').val() === 'AUD') {
+                        $('.regi-mobile-code').val('MYR');
+                    }
+                    $('.regi-mobile-code .regi-code-aus').prop('hidden', true);
+                }
 
             } else if (method === 'email') {
                 //show email
@@ -384,7 +479,7 @@ function requestAffTac()
         //send whatsapp
         whatsappTAC2(contact,regioncode);
         
-    } else if( contact!=='' && method==="SMS (Telco)" ) {
+    } else if( contact!=='' && method==="SMS Channel 1" ) {
         var pass = Math.floor(100000 + Math.random() * 900000);
 
         //disable get tac option and allow readonly
@@ -397,6 +492,20 @@ function requestAffTac()
 
         //send sms
         sms(contact,pass,regioncode);
+
+    } else if( contact!=='' && method==="SMS Channel 2" ) {
+        var pass = Math.floor(100000 + Math.random() * 900000);
+
+        //disable get tac option and allow readonly
+        const otpMethodBtn = document.getElementById('otpMethodBtn');
+        otpMethodBtn.disabled = true;
+        $('.affRegisForm [name=mobile]').prop('readonly', true);
+        
+        //disable get tac button
+        $('.btn-tac').prop('disabled', true);
+
+        //send sms
+        GlobalSMSTAC(contact,pass,regioncode);
 
     } else if( email!=='' && method==="Email" ){
         if (email !==''){
@@ -519,6 +628,30 @@ function emailTAC(email)
     });
 }
 
+function GlobalSMSTAC(contact,mobilecode)
+{
+
+    var params = {};
+    params['contact'] = contact;
+    params['regioncode'] = mobilecode;
+
+    $.post('/whatsapp/send-tac-global', {
+        params
+    }, function(data, status) {
+        const obj = JSON.parse(data);
+        if( obj.code==200 ) {
+            swal.close();
+            timer();
+        } else if( obj.code==39 ) {
+            forceUserLogout();
+        } else {
+            swal.fire("Error!", obj.message + " (Code: "+obj.code+")", "error");
+            $('.btn-tac').prop('disabled', false);
+            $('.affRegisForm [name=mobile').prop('readonly', false);
+        }
+    });
+}
+
 function timer()
 {
     //$('.btn-tac').prop('disabled', true);
@@ -555,5 +688,19 @@ function generalLoading()
         imageAlt: '<?=$_ENV['company'];?>',
         background: 'transparent'
 	});
+}
+
+function airdatepicker()
+{
+    $('[name=dob]').datepicker({
+        autoClose: true,
+        changeMonth: true,
+        changeYear: true,
+        language: '<?=$_SESSION['lang']=='cn' || $_SESSION['lang']=='zh' ? 'zh' : 'en'?>',
+        dateFormat: 'yyyy-mm-dd',
+        maxDate: new Date(),
+        todayButton: new Date(),
+        clearButton: true
+    });
 }
 </script>
